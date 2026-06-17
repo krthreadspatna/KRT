@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KRThreads | Premium Custom Apparel & Corporate Merchandise</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1a2b4c;
+            --secondary-color: #f39c12;
+            --light-bg: #f8f9fa;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .navbar {
+            background-color: var(--primary-color);
+        }
+        .navbar-brand {
+            font-weight: 700;
+            color: #fff !important;
+            font-size: 1.5rem;
+        }
+        .hero-section {
+            background: linear-gradient(rgba(26, 43, 76, 0.8), rgba(26, 43, 76, 0.8)), url('https://images.unsplash.com/photo-1599305090598-fe179d501227?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+        .offer-badge {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 700;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 3px;
+            background: var(--secondary-color);
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+            height: 100%;
+            border-top: 4px solid var(--primary-color);
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .product-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        .fabric-list {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-bottom: 0;
+        }
+        .quote-section {
+            background-color: var(--light-bg);
+            padding: 60px 0;
+        }
+        .quote-form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .notice-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+            font-weight: bold;
+            padding: 12px 25px;
+            border-radius: 5px;
+            border: none;
+            width: 100%;
+            transition: all 0.3s;
+        }
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+            color: white;
+        }
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 40px 0 20px;
+        }
+        .tech-badge {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-tshirt me-2"></i>KRThreads</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#products">Our Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#quote">Get Quotation</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="offer-badge">
+                <i class="fas fa-gift me-2"></i>First Order Delivery FREE!
+            </div>
+            <h1 class="hero-title">Custom Apparel & Corporate Gifting</h1>
+            <p class="lead mb-4">Tailor-made uniforms and merchandise for Businesses, Companies, and Sports Academies.</p>
+            <div class="d-flex justify-content-center flex-wrap mb-4">
+                <div class="tech-badge"><i class="fas fa-print me-2"></i>Advanced DTF Printing</div>
+                <div class="tech-badge"><i class="fas fa-cogs me-2"></i>12-Head Embroidery Machines</div>
+            </div>
+            <a href="#quote" class="btn btn-warning btn-lg fw-bold px-4 py-2">Get Your Free Quote Now</a>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-5">
+        <div class="container">
+            <h2 class="section-title">What We Offer</h2>
+            <div class="row g-4">
+                
+                <div class="col-md-4">
+                    <div class="product-card">
+                        <i class="fas fa-tshirt product-icon"></i>
+                        <h5>Custom T-Shirts</h5>
+                        <p class="mb-2">Round neck & Collar. Available in 7 colors.</p>
+                        <p class="fabric-list"><strong>Fabrics:</strong> Pure Polyester, Sap Matty, PC Matty, Airjet Matty, Dotnet, Cotton.</p>
+                        <p class="fabric-list"><strong>Customization:</strong> DTF & Embroidery (All Sizes)</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="product-card">
+                        <i class="fas fa-user-tie product-icon"></i>
+                        <h5>Custom Shirts</h5>
+                        <p class="mb-2">Formal & Casual. All colors available.</p>
+                        <p class="fabric-list"><strong>Fabrics:</strong> Twill, Oxford, Cotton, Arvind, Siyaram, Raymond.</p>
+                        <p class="fabric-list"><strong>Customization:</strong> Embroidery (All Sizes)</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="product-card">
+                        <i class="fas fa-user-nurse product-icon"></i>
+                        <h5>Custom Aprons & Chef Coats</h5>
+                        <p class="mb-2">Professional kitchen wear. All colors.</p>
+                        <p class="fabric-list"><strong>Fabrics:</strong> Nylon, Polyester, Cotton, blended fabrics.</p>
+                        <p class="fabric-list"><strong>Customization:</strong> DTF & Embroidery (All Sizes)</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="product-card">
+                        <i class="fas fa-shoe-prints product-icon"></i>
+                        <h5>Tailored Pants</h5>
+                        <p class="mb-2">Formal & Uniform trousers. All colors.</p>
+                        <p class="fabric-list"><strong>Fabrics:</strong> Cotton, Polycotton, Siyaram, Raymond.</p>
+                        <p class="fabric-list"><strong>Sizes:</strong> All Sizes Custom Tailored</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="product-card">
+                        <i class="fas fa-hat-cowboy product-icon"></i>
+                        <h5>Custom Caps & Bags</h5>
+                        <p class="mb-2">Stretch fit, buckle caps, and custom bags. All colors.</p>
+                        <p class="fabric-list"><strong>Fabrics:</strong> Polyester, Matty, Cotton.</p>
+                        <p class="fabric-list"><strong>Customization:</strong> DTF & Embroidery</p>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="product-card">
+                        <i class="fas fa-id-card product-icon"></i>
+                        <h5>Branding & Stationery</h5>
+                        <p class="mb-2">Complete your corporate identity.</p>
+                        <p class="fabric-list"><strong>Items:</strong> Custom Towels (Embroidery), Menu Cards, Visiting Cards, Brochures, Luggage Tags, ID Cards.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section id="quote" class="quote-section">
+        <div class="container">
+            <h2 class="section-title">Request a Quotation</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="quote-form">
+                        
+                        <div class="notice-box">
+                            <strong><i class="fas fa-info-circle me-2"></i>Notice:</strong> We provide standard sizing. If you require custom staff uniforms with <strong>proper individual measurements for each staff member</strong>, extra tailoring charges will apply.
+                        </div>
+
+                        <form id="whatsappForm" onsubmit="sendToWhatsApp(event)">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Select Item</label>
+                                    <select class="form-select" id="item" required>
+                                        <option value="" disabled selected>Choose an item...</option>
+                                        <option value="T-Shirt (Round Neck)">T-Shirt (Round Neck)</option>
+                                        <option value="T-Shirt (Collar)">T-Shirt (Collar)</option>
+                                        <option value="Shirt">Custom Shirt</option>
+                                        <option value="Apron">Apron</option>
+                                        <option value="Chef Coat">Chef Coat</option>
+                                        <option value="Tailored Pant">Tailored Pant</option>
+                                        <option value="Cap">Cap</option>
+                                        <option value="Bag">Bag</option>
+                                        <option value="Towel">Towel</option>
+                                        <option value="Stationery/Other">Stationery (ID Card, Menu, etc.)</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Total Quantity</label>
+                                    <input type="number" class="form-control" id="qty" min="1" placeholder="e.g. 50" required>
+                                </div>
+                                
+                                <div class="col-md-6">
+                                    <label class="form-label">Size Requirements</label>
+                                    <select class="form-select" id="size" required>
+                                        <option value="" disabled selected>Choose sizes...</option>
+                                        <option value="Standard Mix (S, M, L, XL)">Standard Mix (S, M, L, XL)</option>
+                                        <option value="Specific Sizes Only">Specific Sizes Only</option>
+                                        <option value="Individual Staff Measurements">Individual Staff Measurements (Extra Charge)</option>
+                                        <option value="Not Applicable">Not Applicable</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Print Type Needed</label>
+                                    <select class="form-select" id="printType" required>
+                                        <option value="" disabled selected>Choose print type...</option>
+                                        <option value="DTF Print">DTF Print</option>
+                                        <option value="Embroidery">Embroidery</option>
+                                        <option value="Both">Both</option>
+                                        <option value="None">None</option>
+                                    </select>
+                                </div>
+
+                                <div class="col-12">
+                                    <label class="form-label">Additional Details / Fabric Preference</label>
+                                    <textarea class="form-control" id="details" rows="3" placeholder="e.g. Need 25 Red PC Matty and 25 Blue Cotton..."></textarea>
+                                </div>
+
+                                <div class="col-12 mt-4">
+                                    <p class="text-muted small mb-2"><i class="fas fa-paperclip me-1"></i> <em>You can share your Logo image directly in the WhatsApp chat after clicking the button below.</em></p>
+                                    <button type="submit" class="btn btn-whatsapp">
+                                        <i class="fab fa-whatsapp me-2"></i>Send Request on WhatsApp
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container text-center">
+            <h3 class="mb-3">KRThreads</h3>
+            <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i>Imlital, Daldali Road, Gandhi Maidan</p>
+            <p class="mb-4">Patna - 800001, Bihar, India</p>
+            <hr class="bg-light opacity-25">
+            <p class="small mb-0">&copy; 2026 KRThreads. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function sendToWhatsApp(event) {
+            event.preventDefault();
+            
+            // Collect form data
+            const item = document.getElementById('item').value;
+            const qty = document.getElementById('qty').value;
+            const size = document.getElementById('size').value;
+            const printType = document.getElementById('printType').value;
+            const details = document.getElementById('details').value;
+
+            // Note: Add the actual WhatsApp business number here (with country code)
+            const phoneNumber = "910000000000"; // REPLACE WITH ACTUAL PHONE NUMBER
+
+            // Construct the message
+            let message = `*Hello KRThreads!* 👋
+
+I would like to get a quotation and consultation for a new custom order. Here are my requirements:
+
+`;
+            message += `👕 *Item:* ${item}
+`;
+            message += `🔢 *Quantity:* ${qty}
+`;
+            message += `📏 *Sizes:* ${size}
+`;
+            message += `🎨 *Print Type:* ${printType}
+`;
+            
+            if (details) {
+                message += `📝 *Additional Details:* ${details}
+`;
+            }
+            
+            message += `
+_I will share my logo/design image in this chat._
+`;
+            message += `
+*P.S. I am claiming my First Order Delivery Free offer!* 🎁`;
+
+            // Encode the message for URL
+            const encodedMessage = encodeURIComponent(message);
+
+            // Create WhatsApp URL
+            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+            // Open in new tab
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
