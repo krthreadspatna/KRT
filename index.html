@@ -163,6 +163,7 @@ background-color: var(--primary-color);
                     <li class="nav-item"><a class="nav-link" href="#products">Our Products</a></li>
                     <li class="nav-item"><a class="nav-link" href="#quote">Get Quotation</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact Us</a></li>
+              <li class="nav-item"><a class="nav-link" href="#track-order" style="color: #f39c12; font-weight: bold;">Track Order</a></li>
                 </ul>
             </div>
         </div>
@@ -467,6 +468,171 @@ background-color: var(--primary-color);
         </div>
     </section>
 
+
+<!-- ========================================== -->
+<!-- KRTHREADS ORDER TRACKER SECTION (START)   -->
+<!-- ========================================== -->
+<section id="track-order" style="padding: 60px 20px; background-color: #f9f9f9; border-top: 1px solid #eaeaea; border-bottom: 1px solid #eaeaea;">
+  <div style="max-width: 1200px; margin: 0 auto; text-align: center;">
+    
+    <span style="color: #666; text-transform: uppercase; letter-spacing: 1.5px; font-size: 13px; font-weight: 700; display: block; margin-bottom: 8px;">Real-Time Status</span>
+    <h2 style="font-size: 28px; margin: 0 0 10px 0; color: #111; font-weight: 800;">Track Your KRThreads Order</h2>
+    <p style="color: #666; font-size: 15px; margin-bottom: 25px;">Enter your Order ID below to view live production and dispatch progress.</p>
+
+    <!-- Tracker Card Container -->
+    <style>
+      .tracker-container { max-width: 420px; margin: 0 auto; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #fff; padding: 25px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.06); text-align: left; }
+      .trk-input { width: 100%; box-sizing: border-box; padding: 12px 15px; margin-bottom: 12px; border: 1.5px solid #ccc; border-radius: 8px; font-size: 16px; outline: none; transition: 0.2s; }
+      .trk-input:focus { border-color: #111; }
+      .trk-btn { width: 100%; box-sizing: border-box; padding: 14px; background: #111; color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.2s; }
+      .trk-btn:hover { background: #333; }
+      
+      /* Timeline Stepper UI */
+      .timeline { list-style: none; padding: 0; margin: 25px 0 0 10px; position: relative; display: none; }
+      .timeline::before { content: ''; position: absolute; top: 10px; bottom: 20px; left: 11px; width: 2px; background: #eaeaea; }
+      
+      .step { position: relative; padding-left: 40px; margin-bottom: 25px; }
+      .step::before { content: ''; position: absolute; left: 0; top: 2px; width: 20px; height: 20px; background: #fff; border: 2px solid #ccc; border-radius: 50%; z-index: 1; transition: 0.3s; }
+      
+      .step-title { font-size: 16px; font-weight: 600; color: #aaa; margin: 0; }
+      .step-desc { font-size: 13px; color: #888; margin: 4px 0 0 0; }
+      
+      /* Active and Completed States */
+      .step.active .step-title, .step.completed .step-title { color: #111; }
+      .step.active .step-desc, .step.completed .step-desc { color: #555; }
+      .step.completed::before { background: #000; border-color: #000; }
+      .step.active::before { background: #fff; border-color: #000; border-width: 4px; }
+      
+      /* Progress Bar for Step 2 */
+      .progress-bg { background: #eee; height: 8px; border-radius: 4px; margin-top: 10px; width: 100%; display: none; overflow: hidden; }
+      .progress-fill { background: #111; height: 100%; width: 0%; transition: width 0.8s ease-in-out; }
+      .percent-text { font-size: 12px; font-weight: bold; color: #111; margin-top: 5px; display: inline-block; }
+    </style>
+
+    <div class="tracker-container">
+      <input type="text" id="orderInput" class="trk-input" placeholder="e.g. KR1001">
+      <button class="trk-btn" onclick="trackOrder()">Check Status</button>
+
+      <p id="errorMsg" style="color: red; text-align: center; display: none; margin-top: 15px; font-weight: bold;"></p>
+
+      <ul class="timeline" id="timelineUI">
+        <li class="step" id="step1">
+          <p class="step-title">Order Placed</p>
+          <p class="step-desc">Order confirmed & verified.</p>
+        </li>
+        
+        <li class="step" id="step2">
+          <p class="step-title">In Progress</p>
+          <p class="step-desc">Manufacturing your custom apparel.</p>
+          <div class="progress-bg" id="progressBox">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <span class="percent-text" id="percentText" style="display: none;">0%</span>
+        </li>
+        
+        <li class="step" id="step3">
+          <p class="step-title">Packaging</p>
+          <p class="step-desc">Quality check and packing.</p>
+        </li>
+        
+        <li class="step" id="step4">
+          <p class="step-title">Out for Delivery</p>
+          <p class="step-desc">Your order is on the way to you!</p>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- Floating Mobile Button (Bottom Right Screen) -->
+<a href="#track-order" style="position: fixed; bottom: 20px; right: 20px; background: #000; color: #fff; padding: 12px 20px; border-radius: 30px; font-size: 14px; font-weight: bold; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.25); z-index: 9999; font-family: sans-serif;">
+  📦 Track Order
+</a>
+
+<script>
+  // PASTE YOUR GOOGLE SHEET CSV LINK HERE inside the quotes
+  const sheetUrl = "YOUR_PUBLISHED_CSV_LINK_HERE";
+
+  async function trackOrder() {
+    const input = document.getElementById('orderInput').value.trim().toLowerCase();
+    const timeline = document.getElementById('timelineUI');
+    const errorMsg = document.getElementById('errorMsg');
+    
+    timeline.style.display = "none";
+    errorMsg.style.display = "none";
+
+    if (!input) {
+      errorMsg.innerText = "Please enter an Order ID.";
+      errorMsg.style.display = "block";
+      return;
+    }
+
+    try {
+      const response = await fetch(sheetUrl);
+      const data = await response.text();
+      const rows = data.split('\n').map(row => row.split(','));
+      
+      let found = false;
+      
+      for (let i = 1; i < rows.length; i++) {
+        // Match columns: 0=OrderID, 1=Customer, 2=Step, 3=Progress
+        const orderId = rows[i][0] ? rows[i][0].trim().toLowerCase() : '';
+        const stepLevel = parseInt(rows[i][2]);
+        const progressPct = rows[i][3] ? rows[i][3].trim() : '0';
+        
+        if (orderId === input) {
+          found = true;
+          
+          // Reset all steps first
+          for(let j=1; j<=4; j++) {
+            document.getElementById('step'+j).className = 'step';
+          }
+          document.getElementById('progressBox').style.display = 'none';
+          document.getElementById('percentText').style.display = 'none';
+
+          // Light up the timeline based on the Step number (1, 2, 3, or 4)
+          for(let j=1; j<=4; j++) {
+            if (j < stepLevel) {
+              document.getElementById('step'+j).classList.add('completed');
+            } else if (j === stepLevel) {
+              document.getElementById('step'+j).classList.add('active');
+            }
+          }
+
+          // Show percentage bar only when in Step 2 or higher
+          if (stepLevel === 2 || stepLevel > 2) {
+            document.getElementById('progressBox').style.display = 'block';
+            document.getElementById('percentText').style.display = 'block';
+            
+            let finalPct = stepLevel > 2 ? '100' : progressPct;
+            
+            setTimeout(() => {
+              document.getElementById('progressFill').style.width = finalPct + "%";
+              document.getElementById('percentText').innerText = finalPct + "% Completed";
+            }, 100);
+          }
+
+          timeline.style.display = "block";
+          break;
+        }
+      }
+
+      if (!found) {
+        errorMsg.innerText = "Order not found. Check your ID.";
+        errorMsg.style.display = "block";
+      }
+    } catch (err) {
+      errorMsg.innerText = "Error loading data. Try again.";
+      errorMsg.style.display = "block";
+    }
+  }
+</script>
+<!-- ========================================== -->
+<!-- KRTHREADS ORDER TRACKER SECTION (END)     -->
+<!-- ========================================== -->
+
+ 
     <!-- Footer -->
     <footer id="contact">
         <div class="container text-center">
